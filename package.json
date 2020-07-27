@@ -1,0 +1,8 @@
+{
+  "name": "pwa",
+  "version": "1.0.0",
+  "main": "/js/app.js",
+  "repository": "https://github.com/mubashirimtiaz/Progressive-Web-App.git",
+  "author": "Mubashir Imtiaz <mubashir.imtiaz123@gmail.com>",
+  "license": "MIT"
+}
