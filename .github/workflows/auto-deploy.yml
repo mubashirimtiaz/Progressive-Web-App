@@ -42,4 +42,4 @@ jobs:
 
       # Deploy to surge
       - name: Deploy react app to surge
-        run: surge ./ core-pwa.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+        run: surge ./public core-pwa.surge.sh --token ${{ secrets.SURGE_TOKEN }}
