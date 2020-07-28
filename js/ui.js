@@ -27,3 +27,20 @@ const renderRecipe = (data, id) => {
 
   recipes.innerHTML += html;
 };
+
+//add recipe
+const addRecipeForm = document.querySelector(".add-recipe");
+addRecipeForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  const somethingYummy = {
+    recipe: addRecipeForm.title.value.trim(),
+    ingredients: addRecipeForm.ingredients.value.trim(),
+  };
+
+  db.collection("recipes")
+    .add(somethingYummy)
+    .catch((err) => console.log(err));
+
+  addRecipeForm.title.value = "";
+  addRecipeForm.ingredients.value = "";
+});
