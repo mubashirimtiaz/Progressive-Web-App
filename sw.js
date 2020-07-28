@@ -1,5 +1,5 @@
-const siteStaticName = "site-static-v0.5";
-const siteDynamicName = "site-dynamic-v0.6";
+const siteStaticName = "site-static-v0.1";
+const siteDynamicName = "site-dynamic-v0.1";
 const assets = [
   "/",
   "/index.html",
@@ -15,6 +15,18 @@ const assets = [
   "https://fonts.googleapis.com/icon?family=Material+Icons",
   "https://fonts.gstatic.com/s/materialicons/v53/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
 ];
+
+// limit cache size function
+
+const limitCacheSize = (name, size) => {
+  caches.open(name).then((cache) => {
+    cache.keys().then((keys) => {
+      if (keys.length > size) {
+        cache.delete(keys[0]).then(limitCacheSize(name, size));
+      }
+    });
+  });
+};
 
 //install event
 
@@ -56,6 +68,7 @@ self.addEventListener("fetch", (evt) => {
           fetch(evt.request).then((fetchResponse) => {
             return caches.open(siteDynamicName).then((cache) => {
               cache.put(evt.request.url, fetchResponse.clone());
+              limitCacheSize(siteDynamicName, 15);
               return fetchResponse;
             });
           })
