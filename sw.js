@@ -1,5 +1,5 @@
-const siteStaticName = "site-static-v0.1";
-const siteDynamicName = "site-dynamic-v0.1";
+const siteStaticName = "site-static-v0.2";
+const siteDynamicName = "site-dynamic-v0.2";
 const assets = [
   "/",
   "/index.html",
@@ -59,27 +59,27 @@ self.addEventListener("activate", (evt) => {
 
 //fetch event
 self.addEventListener("fetch", (evt) => {
-  evt.respondWith(
-    caches
-      .match(evt.request)
-      .then((cacheResponse) => {
-        return (
-          cacheResponse ||
-          fetch(evt.request).then((fetchResponse) => {
-            return caches.open(siteDynamicName).then((cache) => {
-              cache.put(evt.request.url, fetchResponse.clone());
-              limitCacheSize(siteDynamicName, 15);
-              return fetchResponse;
-            });
-          })
-        );
-      })
-      .catch(() => {
-        if (evt.request.url.includes("html")) {
-          return caches.match("/pages/fallback.html");
-        }
-      })
-  );
+  // evt.respondWith(
+  //   caches
+  //     .match(evt.request)
+  //     .then((cacheResponse) => {
+  //       return (
+  //         cacheResponse ||
+  //         fetch(evt.request).then((fetchResponse) => {
+  //           return caches.open(siteDynamicName).then((cache) => {
+  //             cache.put(evt.request.url, fetchResponse.clone());
+  //             limitCacheSize(siteDynamicName, 15);
+  //             return fetchResponse;
+  //           });
+  //         })
+  //       );
+  //     })
+  //     .catch(() => {
+  //       if (evt.request.url.includes("html")) {
+  //         return caches.match("/pages/fallback.html");
+  //       }
+  //     })
+  // );
 });
 
 // let deferredPrompt;
