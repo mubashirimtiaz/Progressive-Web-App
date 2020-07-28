@@ -1,5 +1,5 @@
-const siteStaticName = "site-static-v0.2";
-const siteDynamicName = "site-dynamic-v0.3";
+const siteStaticName = "site-static-v0.5";
+const siteDynamicName = "site-dynamic-v0.6";
 const assets = [
   "/",
   "/index.html",
@@ -61,12 +61,11 @@ self.addEventListener("fetch", (evt) => {
           })
         );
       })
-      .catch(() =>
-        caches
-          .match("/pages/fallback.html")
-          .then((cacheResponse) => cacheResponse)
-          .catch((err) => console.log(err))
-      )
+      .catch(() => {
+        if (evt.request.url.includes("html")) {
+          return caches.match("/pages/fallback.html");
+        }
+      })
   );
 });
 
