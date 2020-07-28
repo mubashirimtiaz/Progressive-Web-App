@@ -1,5 +1,5 @@
-const siteStaticName = "site-static-v0.3";
-const siteDynamicName = "site-dynamic-v0.4";
+const siteStaticName = "site-static-v0.5";
+const siteDynamicName = "site-dynamic-v0.6";
 const assets = [
   "/",
   "/index.html",

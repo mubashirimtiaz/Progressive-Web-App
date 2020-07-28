@@ -44,3 +44,10 @@ addRecipeForm.addEventListener("submit", (evt) => {
   addRecipeForm.title.value = "";
   addRecipeForm.ingredients.value = "";
 });
+
+//delete recipe from DOM
+
+const deleteRecipe = (id) => {
+  const recipe = document.querySelector(`.recipe[data-id=${id}]`);
+  recipe.remove();
+};
